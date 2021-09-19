@@ -40,4 +40,17 @@ class Insert implements QueryInterface
         }
         return $this;
     }
+/*
+    public function values(string ...$values): self
+    {
+        $this->values = $values;
+        /*
+        foreach ($columns as $column) {
+            $this->values[] = ":$column";
+        }
+
+        return $this;
+    }
+*/
+
 }
