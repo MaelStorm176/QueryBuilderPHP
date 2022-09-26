@@ -192,6 +192,6 @@ class Select implements QueryInterface
 
     public function get(){
         $query_executed = $this->execute();
-        return $query_executed->fetchAll(\PDO::FETCH_ASSOC);
+        return $query_executed->fetchAll(\PDO::FETCH_CLASS);
     }
 }
