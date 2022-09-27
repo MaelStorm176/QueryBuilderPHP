@@ -7,9 +7,9 @@ namespace DevCoder;
  */
 class QueryBuilder
 {
-    public static function select(\PDO $pdo, string ...$select): Select
+    public static function select(string ...$select): Select
     {
-        return new Select($pdo,$select);
+        return new Select($select);
     }
 
     public static function insert(string $into): Insert

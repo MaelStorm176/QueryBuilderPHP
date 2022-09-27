@@ -6,20 +6,9 @@ use DevCoder\Interfaces\QueryInterface;
 
 class Update implements QueryInterface
 {
-    /**
-     * @var string
-     */
-    private $table;
-
-    /**
-     * @var array<string>
-     */
-    private $conditions = [];
-
-    /**
-     * @var array<string>
-     */
-    private $columns = [];
+    private string $table;
+    private array $conditions = [];
+    private array $columns = [];
 
     public function __construct(string $table)
     {

@@ -1,16 +1,21 @@
 <?php
 use DevCoder\QueryBuilder;
 
-require_once 'db/sqlconnect.php';
 require_once 'class/autoload.php';
+require_once 'db/MyPDO.php';
 
-$tracks = (new QueryBuilder())
-    ->select($pdo, "track.*", "album.Title as AT", "genre.Name as GN", "mediatype.Name as MN")
-    ->from("track")
+$pdo = MyPDO::getInstance();
+
+$tracks = QueryBuilder::select("track.*", "album.title as AT", "genre.Name as GN", "mediatype.Name as MN")
+    ->from('Track')
     ->innerJoin("album", "genre", "mediatype")
     ->where("track.AlbumId = album.AlbumId", "track.GenreId = genre.GenreId", "track.MediaTypeId = mediatype.MediaTypeId")
-    ->get()
-;
+    ->where('Milliseconds > 30000')
+    ->where('Milliseconds < 40000')
+    ->where('Composer IS NOT NULL')
+    ->orderBy('Milliseconds')
+    ->limit(10)
+    ->get($pdo);
 
 ?>
 
