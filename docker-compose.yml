@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+  php:
+    image: php:8.1-fpm-alpine
+    build:
+        context: ./.docker/php
+        dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/html
+    environment:
+      - XDEBUG_CONFIG=remote_host=host.docker.internal
+
+  nginx:
+    image: nginx:stable-alpine
+    build:
+        context: ./.docker/nginx
+        dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "80:80"
+    links:
+      - php
